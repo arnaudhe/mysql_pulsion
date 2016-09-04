@@ -80,7 +80,7 @@ function command_doctor {
         verbose 1 "Starting mysql..."
         launchctl load /usr/local/opt/mysql/homebrew.mxcl.mysql.plist
 
-        sleep 1
+        sleep 2
 
         set -e
         verbose 1 "Test of mysql"
