@@ -13,3 +13,6 @@
 
 ##Stop
     pulsion stop
+
+##Restart
+    pulsion restart

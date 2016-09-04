@@ -39,7 +39,7 @@ function command_stop {
 
     function help {
 
-        echo -e "Example of pulsion command"
+        echo -e "Stop mysql"
 
     }
 
@@ -51,11 +51,27 @@ function command_stop {
     }
 }
 
+function command_restart {
+
+    function help {
+
+        echo -e "Restart mysql"
+
+    }
+
+    function process {
+
+        pulsion stop
+        pulsion start
+
+    }
+}
+
 function command_doctor {
 
     function help {
 
-        echo -e "Check install sanity"
+        echo -e "Check mysql install sanity"
 
     }
 
