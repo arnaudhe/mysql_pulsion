@@ -1,0 +1,74 @@
+#!/bin/bash
+
+function command_install {
+
+    function help {
+
+        echo -e "Install mysql"
+
+    }
+
+    function process {
+
+        set -e
+
+        brew update
+        brew upgrade
+        brew install mysql
+        mysql_secure_installation
+    }
+}
+
+function command_start {
+
+    function help {
+
+        echo -e "Start mysql"
+
+    }
+
+    function process {
+
+        verbose 1 "Starting mysql..."
+        launchctl load /usr/local/opt/mysql/homebrew.mxcl.mysql.plist
+
+    }
+}
+
+function command_stop {
+
+    function help {
+
+        echo -e "Example of pulsion command"
+
+    }
+
+    function process {
+
+        verbose 1 "Stopping mysql..."
+        launchctl unload /usr/local/opt/mysql/homebrew.mxcl.mysql.plist
+
+    }
+}
+
+function command_doctor {
+
+    function help {
+
+        echo -e "Check install sanity"
+
+    }
+
+    function process {
+
+        verbose 1 "Starting mysql..."
+        launchctl load /usr/local/opt/mysql/homebrew.mxcl.mysql.plist
+
+        sleep 1
+
+        set -e
+        verbose 1 "Test of mysql"
+        echo quit | mysql -uroot
+        verbose 1 "Connection Ok"
+    }
+}
