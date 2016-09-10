@@ -12,10 +12,14 @@ function command_install {
 
         set -e
 
-        brew update
-        brew upgrade
-        brew install mysql
-        mysql_secure_installation
+        if is_command_exist mysql
+        then
+            exit 0
+        else
+            verbose 1 "Visit http://www.mysql.com/downloads/ to install mysql"
+            exit 1
+        fi
+        
     }
 }
 
@@ -30,7 +34,7 @@ function command_start {
     function process {
 
         verbose 1 "Starting mysql..."
-        launchctl load /usr/local/opt/mysql/homebrew.mxcl.mysql.plist
+        /usr/local/mysql/support-files/mysql.server start
 
     }
 }
@@ -46,7 +50,7 @@ function command_stop {
     function process {
 
         verbose 1 "Stopping mysql..."
-        launchctl unload /usr/local/opt/mysql/homebrew.mxcl.mysql.plist
+        /usr/local/mysql/support-files/mysql.server stop
 
     }
 }
@@ -61,9 +65,8 @@ function command_restart {
 
     function process {
 
-        pulsion stop
-        pulsion start
-
+        verbose 1 "Restarting mysql..."
+        /usr/local/mysql/support-files/mysql.server restart
     }
 }
 
@@ -78,9 +81,9 @@ function command_doctor {
     function process {
 
         verbose 1 "Starting mysql..."
-        launchctl load /usr/local/opt/mysql/homebrew.mxcl.mysql.plist
+        /usr/local/mysql/support-files/mysql.server start
 
-        sleep 2
+        sleep 3
 
         set -e
         verbose 1 "Test of mysql"

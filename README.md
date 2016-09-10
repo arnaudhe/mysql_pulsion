@@ -1,8 +1,6 @@
 # MYSQL management with pulsion
 
 ##Install
-
-####Required : Homebrew
     pulsion install
 
 ##Test the setup
