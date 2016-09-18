@@ -30,12 +30,16 @@ function command_start {
         echo -e "Start mysql"
 
     }
+    
+    function cmd {
+        /usr/local/mysql/support-files/mysql.server start
+    }
 
     function process {
 
         verbose 1 "Starting mysql..."
-        /usr/local/mysql/support-files/mysql.server start
-
+        exesudo cmd
+        
     }
 }
 
@@ -46,11 +50,15 @@ function command_stop {
         echo -e "Stop mysql"
 
     }
+    
+    function cmd {
+        /usr/local/mysql/support-files/mysql.server stop
+    }
 
     function process {
 
         verbose 1 "Stopping mysql..."
-        /usr/local/mysql/support-files/mysql.server stop
+        exesudo cmd
 
     }
 }
@@ -62,11 +70,15 @@ function command_restart {
         echo -e "Restart mysql"
 
     }
+    
+    function cmd {
+        /usr/local/mysql/support-files/mysql.server restart
+    }
 
     function process {
 
         verbose 1 "Restarting mysql..."
-        /usr/local/mysql/support-files/mysql.server restart
+        exesudo cmd
     }
 }
 
@@ -80,8 +92,7 @@ function command_doctor {
 
     function process {
 
-        verbose 1 "Starting mysql..."
-        /usr/local/mysql/support-files/mysql.server start
+        pulsion start
 
         sleep 3
 
