@@ -12,7 +12,7 @@ function command_install {
 
         set -e
 
-        if is_command_exist mysql
+        if is_command_exist /usr/local/mysql/bin/mysql
         then
             exit 0
         else
